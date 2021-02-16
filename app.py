@@ -56,11 +56,6 @@ def quran_api():
     return render_template("api.html", path="api", title="API Quran")
 
 
-@app.route("/search")
-def search():
-    return render_template("search.html")
-
-
 @app.route("/")
 def index():
     return render_template("index.html", path="home", title="Quran web")
