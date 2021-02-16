@@ -7,3 +7,4 @@ MarkupSafe==1.1.1
 requests==2.7.0
 soupsieve==2.0.1
 Werkzeug==1.0.1
+flask-cors
