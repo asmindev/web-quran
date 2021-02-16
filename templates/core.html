@@ -1,0 +1,27 @@
+{%macro head(title)%}
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" />
+  <!-- prettier-ignore -->
+  <link href="https://fonts.googleapis.com/css2?family=Abel&family=Montserrat&family=Poppins&family=Yanone+Kaffeesatz&display=swap" rel="stylesheet"/>
+  <title>{{ title }}</title>
+
+  <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}" />
+  <!-- prettier-ignore -->
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="{{url_for('static', filename='prism.css')}}">
+</head>
+{%endmacro%}
+
+<!-- prettier-ignore -->
+{% macro nav(path)%}
+    <nav class="w-full p-4 flex justify-end">
+      {% if path == 'home' %}
+      <a href="/quran/api" class="border rounded border-gray-700"><i class="ri-code-s-slash-line text-lg mx-2"></i></a>
+      {% else %}
+      <a href="/" class="border rounded border-gray-700 text-center"><i class="ri-home-2-line text-lg mx-2"></i></a>
+      {% endif %}
+    </nav>
+{%endmacro%}

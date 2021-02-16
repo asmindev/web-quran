@@ -1,0 +1,73 @@
+{% import 'core.html' as core%}
+<!DOCTYPE html>
+<html lang="en">
+  {{
+    core.head(title)
+  }}
+  <body class="antiliased bg-gray-100 h1-screen w-full">
+    {{ core.nav(path) }}
+    <div class="container w-11/12 mx-auto">
+      <h1 class="w-1/2 mx-auto text-3xl bg-white shadow-lg p-4 text-center font-yanone rounded-lg mb-8">Quran api</h1>
+      <div>
+       <div class="api-card">
+          <h1 class="text-2xl font-yanone mb-8 uppercase">Get surah</h1>
+          <p>Method : POST</p>
+          <p class="api-text">Data : {"type": "surah", "data": {"surah": "masukan surah atau nomor surah"}}</p>
+          <pre class="language-python"><code>
+          # pakai python
+          import requests
+          import json
+
+          def main():
+            data = {
+                    "type": "specify",
+                    "data": {"surah": "alkahfi"}
+                    }
+            res = requests.post('{{request.base_url}}', json=data).json()
+            print(res)
+          main()
+          </code></pre>
+        </div>
+       <div class="api-card">
+          <h1 class="text-2xl font-yanone mb-8 uppercase">Pilih 1 ayat pada surah</h1>
+          <p>Method : POST</p>
+          <p class="api-text">Data : {"type": "select", "data": {"surah": "masukan surah atau nomor surah", "ayat": "nomor ayat yang dipilih"}}</p>
+          <pre class="language-python"><code>
+          # pakai python
+          import requests
+          import json
+
+          def main():
+            data = {
+                    "type": "specify",
+                    "data": {"surah": "arrahman", "ayat":"13"}
+                    }
+            res = requests.post('{{request.base_url}}', json=data).json()
+            print(res)
+          main()
+          </code></pre>
+        </div>
+       <div class="api-card">
+          <h1 class="text-2xl font-yanone mb-8 uppercase">Pilih beberapa ayat pada surah</h1>
+          <p>Method : POST</p>
+          <p class="api-text">Data : {"type": "specify", "data": {"surah": "masukan surah atau nomor surah", "start":"mulai dari ayat", "end": "sampai ke ayat"}}</p>
+          <pre class="language-python text-left"><code>
+          # pakai python
+          import requests
+          import json
+
+          def main():
+            data = {
+                    "type": "specify",
+                    "data": {"surah": "1", "start":"2", "end": "5"}
+                    }
+            res = requests.post('{{request.base_url}}', json=data).json()
+            print(res)
+          </code></pre>
+        </div>
+        </div>
+      </div>
+    </div>
+    <script src="{{url_for('static', filename='prism.js')}}"></script>
+  </body>
+</html>
