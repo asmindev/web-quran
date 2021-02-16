@@ -1,5 +1,5 @@
 function getSurah(data) {
-  return fetch("http://localhost:5001/quran/api", {
+  return fetch("/quran/api", {
     method: "post",
     headers: {
       Accept: "application/json, text/plain, */*",
