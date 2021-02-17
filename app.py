@@ -73,4 +73,4 @@ def _not(e):
     return render_template("404.html", path="404", title="404 PAGE NOT FOUND"), 404
 
 
-app.run(host="localhost", port=int(os.environ.get("PORT", "5000")), debug=True)
+app.run(host="0.0.0.0", port=int(os.environ.get("PORT", "5000")), debug=True)
