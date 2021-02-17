@@ -1,0 +1,13 @@
+{% import 'core.html' as core %}
+<!DOCTYPE html>
+<html lang="en">
+  {{core.head('404 PAGE NOT FOUND')}}
+<body>
+  {{core.nav('path')}}
+  <div class="container w-full h-screen flex items-center justify-center flex-col text-gray-500">
+    <h1 class="font-montsserat text-4xl text-bold">404</h1>
+    <h1 class="font-montsserat text-2xl text-thin mt-10">PAGE NOT FOUND</h1>
+    <p class="text-sm font-montsserat mt-10"><a href="{{url_for('index')}}">Back to HOME</a></p>
+  </div>
+</body>
+</html>

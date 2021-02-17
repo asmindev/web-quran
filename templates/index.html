@@ -10,13 +10,18 @@
       <div class="container mx-auto flex justify-center">
         <div class="flex justify-center flex-col">
           <!-- prettier-ignore -->
-          <div class="bg-bismilah bg-cover bg-no-repeat bg-center w-full mx-auto h-80 flex items-end justify-center">
-            <!-- prettier-ignore -->
-            <input type="text" autocomplete="off" class="p-4 w-3/4 sm:w-1/2 h-10 mb-10 border border-gray-500 border-r-0 focus:border-green-500 focus:outline-none rounded-l-lg" id="keyword" placeholder="Cari alquran (surah atau nomor)"/>
-            <button class="h-10 py-2 px-4 mb-10 bg-white border border-gray-500 rounded-r-lg hover:bg-gray-100 transition-all transition-duration-700 focus:outline-none" id="click"><i class="ri-search-line"></i></button>
+          <div class="bg-bismilah bg-cover bg-no-repeat bg-center w-full mx-auto h-80 relative">
+            <div class="w-full h-12 px-10 flex flex-row-reverse justify-between items-center bg-gray-200 absolute bottom-0">
+              <div class="flex items-center justify-between relative">
+                <input type="text" autocomplete="off" class="w-full p-2 rounded border focus:outline-none focus:border-blue-700 transition-all transition-duration-1000" id="keyword" placeholder="Cari kata di Al-Quran"/>
+                <span class="w-8 text-center absolute right-1" id="click"><i class="text-xl ri-search-line"></i></span>
+              </div>
+              <div>
+                <span id="list"><i class="text-xl ri-menu-line"></i></span>
+              </div>
+            </div>
+            <span id="judul" class="my-8"></span>
           </div>
-          <!-- prettier-ignore -->
-          <span id="judul" class="my-8"></span>
           <div
             id="demo"
             class="w-screen flex flex-col sm:flex-wrap sm:flex-row justify-center"
@@ -32,5 +37,6 @@
     </footer>
     <script src="{{url_for('static', filename='jquery.min.js')}}"></script>
     <script src="{{url_for('static', filename='script.js')}}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.15.1/dist/sweetalert2.all.min.js"></script>
   </body>
 </html>

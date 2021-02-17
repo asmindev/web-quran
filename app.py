@@ -19,6 +19,7 @@ def quran_api():
     if request.method == "POST":
         quran = Quran()
         data = request.get_json()
+        print(data)
         if data:
             if data["type"] == "select":
                 data = data.get("data")
@@ -50,6 +51,11 @@ def quran_api():
                     return jsonify(
                         dict(success=False, message="gagal, param data tidak ada")
                     )
+            elif data["type"] == "search":
+                data = data.get("data")
+                if data:
+                    data = data.get("query")
+                    return jsonify(quran.search(data))
             else:
                 return jsonify(status=False, message=None)
         else:
@@ -62,4 +68,9 @@ def index():
     return render_template("index.html", path="home", title="Quran web")
 
 
-app.run(host="0.0.0.0", port=int(os.environ.get("PORT", "5000")), debug=True)
+@app.errorhandler(404)
+def _not(e):
+    return render_template("404.html", path="404", title="404 PAGE NOT FOUND"), 404
+
+
+app.run(host="localhost", port=int(os.environ.get("PORT", "5000")), debug=True)

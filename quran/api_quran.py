@@ -123,15 +123,15 @@ def get_by_name(word: str):
     if len(res) != 0:
         return res[0]
     else:
-        None
+        return word
 
 
 def get_by_index(index: int):
     if 0 == int(index):
-        return None
+        return index
     else:
         if int(index) >= 115:
-            return None
+            return index
         else:
             return [
                 element
@@ -145,7 +145,13 @@ def get_surah(surah: str):
     for _surah in quran:
         if surah == _surah.get("surah"):
             return dict(success=True, message="berhasil", data=_surah)
-    return dict(success=False, message="gagal", data={})
+    return dict(
+        success=False,
+        message="gagal, " + f"surah ke-{surah} "
+        if surah.isdigit()
+        else f"Surah {surah}",
+        data={},
+    )
 
 
 class Quran:
@@ -164,6 +170,48 @@ class Quran:
                 message="gagal, surah '%s' tidak ditemukan" % surah,
                 data={},
             )
+
+    def search(self, query):
+        arr = []
+        for surah in self._quran:
+            for ayat in surah["data"]:
+                text = (
+                    ayat["arti"]
+                    .lower()
+                    .replace(".", "")
+                    .replace(",", "")
+                    .replace("(", "")
+                    .replace(")", "")
+                    .replace("‘", "")
+                    .replace("’", "")
+                    .replace("”", "")
+                    .replace("“", "")
+                )
+                if len(query.split(" ")) == 1:
+                    if query.lower() in text:
+                        message = "success"
+                        success = True
+                        data = {
+                            "surah": surah["surah"],
+                            "nomor": surah["nomor"],
+                            "data": [ayat],
+                        }
+                        arr.append(data)
+                else:
+                    if query.lower() in text:
+                        message = "success"
+                        success = True
+                        data = {
+                            "surah": surah["surah"],
+                            "nomor": surah["nomor"],
+                            "data": [ayat],
+                        }
+                        arr.append(data)
+        if len(arr) == 0:
+            message = "gagal, keyword '%s' tidak temukan" % query
+            success = False
+
+        return dict(message=message, success=success, data=arr)
 
     def select(self, surah, ayat):
         data = self.surah(surah)
